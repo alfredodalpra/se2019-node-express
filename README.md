@@ -1,4 +1,4 @@
-# Node.js Tutorial
+# Node.js & Express Tutorial
 
 Node.js is a server-side platform built on Google Chrome's JavaScript Engine (V8 Engine). Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
 
@@ -16,7 +16,16 @@ You can install Node.js by following the instructions from the Node.js project w
 If you're using a package manager in your OS, you might find ports already available. For example:
 - [Installing nodejs using MacPorts](https://jonlabelle.com/snippets/view/shell/install-nodejs-macport). 
 - [Installing nodejs in Ubuntu](https://websiteforstudents.com/install-the-latest-node-js-and-nmp-packages-on-ubuntu-16-04-18-04-lts/)
+- [Installing nodejs using NVM](https://github.com/nvm-sh/nvm#usage). This option allows us to easily manage multiple versions of Node.js. 
 - If you're using anything else, you probably know what you're doing :)
+
+### Using nvm
+
+In case you decided to use NVM,  issue the following command to install the latest LTS version.
+
+```
+$ nvm install
+```
 
 ## Materials
 You'll find the materials for the lectures in the day* folders.

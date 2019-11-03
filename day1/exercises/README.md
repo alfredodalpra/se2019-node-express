@@ -1,7 +1,7 @@
 # Exercises
 Let's take 10 minutes to work on the following exercises. We do not expect you to finish both right now, so do as much as you can and leave the rest as homework. 
 
-1. **Implement evennumbers.js**, verying that the user provides the right number of parameters (2) and in the right format (numbers). 
+1. **Implement two-numbers.js**, verifying that the user provides the right number of parameters (2) and in the right format (numbers).
 
 2. **Create a frequency table** from an input file containing on word per line. 
 Example Input:
@@ -56,7 +56,7 @@ The documentation of the Wikipedia API suggests the following call:
 https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Albert%20Einstein&format=json
 
 ```
-which has the following output format. You elements to display are in the query.search array.
+which has the following output format. The elements to display are in the query.search array.
 ```json
 {  
    "batchcomplete":"",
