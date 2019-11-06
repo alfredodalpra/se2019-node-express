@@ -167,8 +167,9 @@ const SS_API = 'https://api.sunrise-sunset.org/json?';
 const cityName = process.argv[2] || 'New York,NY';
 
 console.log(`Sunrise/sunset in: ${cityName}`);
+const cityMapUrl = `${MAPQUEST_URL}&location=${cityName}`;
 
-request(`${MAPQUEST_URL}&location=${cityName}`, (error, response, body) => {
+request(cityMapUrl, (error, response, body) => {
   if (error) {
     console.error(error);
     return;
@@ -176,19 +177,17 @@ request(`${MAPQUEST_URL}&location=${cityName}`, (error, response, body) => {
 
   const json = JSON.parse(body);
   const city = json.results[0].locations[0].latLng;
+  const ssApiUrl = `${SS_API}&lat=${city.lat}&lng=${city.lng}`;
 
-  request(
-    `${SS_API}&lat=${city.lat}&lng=${city.lng}`,
-    (sError, sResponse, sBody) => {
-      if (sError) {
-        console.error(sError);
-        return;
-      }
-
-      const sunriseSunset = JSON.parse(sBody);
-      console.log(sunriseSunset);
+  request(ssApiUrl, (sError, sResponse, sBody) => {
+    if (sError) {
+      console.error(sError);
+      return;
     }
-  );
+
+    const sunriseSunset = JSON.parse(sBody);
+    console.log(sunriseSunset);
+  });
 });
 ```
 
@@ -206,14 +205,15 @@ And the following is the same module but using Promises.
 const fetch = require('node-fetch');
 
 const API_KEY = process.env.API_KEY;
-const MAPQUEST_URL = `http://www.mapquestapi.com/geocoding/v1/address?key=${API_KEY}`;
+const MAPQUEST_URL = `https://www.mapquestapi.com/geocoding/v1/address?key=${API_KEY}`;
 const SS_API = 'https://api.sunrise-sunset.org/json?';
 
 const cityName = process.argv[2] || 'New York,NY';
+const cityMapUrl = `${MAPQUEST_URL}&location=${cityName}`;
 
 console.log(`Sunrise/sunset in: ${cityName}`);
 
-fetch(`${MAPQUEST_URL}&location=${cityName}`)
+fetch(cityMapUrl)
   .then(res => res.json())
   .then(json => json.results[0].locations[0].latLng)
   .then(city => fetch(`${SS_API}&lat=${city.lat}&lng=${city.lng}`))
@@ -236,7 +236,9 @@ const MAPQUEST_URL = `https://www.mapquestapi.com/geocoding/v1/address?key=${API
 const SS_API = 'https://api.sunrise-sunset.org/json?';
 
 function fetchCoordinate(cityname, callback) {
-  request(`${MAPQUEST_URL}&location=${cityname}`, (error, response, body) => {
+  const url = `${MAPQUEST_URL}&location=${cityname}`;
+
+  request(url, (error, response, body) => {
     if (error) {
       return callback(error);
     }
@@ -247,16 +249,15 @@ function fetchCoordinate(cityname, callback) {
 }
 
 function fetchSunriseSunset(city, callback) {
-  request(
-    `${SS_API}&lat=${city.lat}&lng=${city.lng}`,
-    (error, response, body) => {
-      if (error) {
-        return callback(error);
-      }
-      const sunriseSunset = JSON.parse(body);
-      return callback(null, sunriseSunset);
+  const url = `${SS_API}&lat=${city.lat}&lng=${city.lng}`;
+
+  request(url, (error, response, body) => {
+    if (error) {
+      return callback(error);
     }
-  );
+    const sunriseSunset = JSON.parse(body);
+    return callback(null, sunriseSunset);
+  });
 }
 
 const cityName = process.argv[2] || 'New York,NY';
@@ -319,22 +320,18 @@ and, we can even use `.catch` to handle errors
 
 ```javascript
 const promise = asyncFunctionThatReturnsAPromise();
-promise
-  .then(onSuccess)
-  .catch(onError);
+promise.then(onSuccess).catch(onError);
 ```
 
 since `.catch` is a shortcut for `.then(null, onError)`.
 
 This is intentionally a very brief discussion about promises, but we encourage the readers to visit the references for further readings.
 
-
 # 3. Async/Await
 
 Here we discuss how to write asynchronous code that looks synchronous. Concretely, we introduce the [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) feature of ES2017.
 
 The following snippet shows how our sunrise-sunset examples looks like when using async/await.
-
 
 ```javascript
 const fetch = require('node-fetch');
@@ -363,12 +360,11 @@ printSunriseSunsetInfo(cityName);
 
 But... don't be tempted to go too sequential (source: [Web Fundamentals](https://developers.google.com/web/fundamentals/primers/async-functions#careful_avoid_going_too_sequential)).
 
-
 ```javascript
 async function series() {
   await wait(500); // Wait 500ms…
   await wait(500); // …then wait another 500ms.
-  return "done!";
+  return 'done!';
 }
 ```
 
@@ -380,10 +376,9 @@ async function parallel() {
   const wait2 = wait(500); // …meaning this timer happens in parallel.
   await wait1; // Wait 500ms for the first timer…
   await wait2; // …by which time this timer has already finished.
-  return "done!";
+  return 'done!';
 }
 ```
-
 
 Again, this section is intentionally brief; we suggest you head over [this article](https://developers.google.com/web/fundamentals/primers/async-functions) from the Web Fundamentals catalog by Google developers. In the article you'll find further dos and don'ts :).
 

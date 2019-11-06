@@ -12,7 +12,9 @@ const MAPQUEST_URL = `https://www.mapquestapi.com/geocoding/v1/address?key=${API
 const SS_API = 'https://api.sunrise-sunset.org/json?';
 
 function fetchCoordinate(cityname, callback) {
-  request(`${MAPQUEST_URL}&location=${cityname}`, (error, response, body) => {
+  const url = `${MAPQUEST_URL}&location=${cityname}`;
+
+  request(url, (error, response, body) => {
     if (error) {
       return callback(error);
     }
@@ -23,16 +25,15 @@ function fetchCoordinate(cityname, callback) {
 }
 
 function fetchSunriseSunset(city, callback) {
-  request(
-    `${SS_API}&lat=${city.lat}&lng=${city.lng}`,
-    (error, response, body) => {
-      if (error) {
-        return callback(error);
-      }
-      const sunriseSunset = JSON.parse(body);
-      return callback(null, sunriseSunset);
+  const url = `${SS_API}&lat=${city.lat}&lng=${city.lng}`;
+
+  request(url, (error, response, body) => {
+    if (error) {
+      return callback(error);
     }
-  );
+    const sunriseSunset = JSON.parse(body);
+    return callback(null, sunriseSunset);
+  });
 }
 
 const cityName = process.argv[2] || 'New York,NY';

@@ -12,8 +12,9 @@ const SS_API = 'https://api.sunrise-sunset.org/json?';
 const cityName = process.argv[2] || 'New York,NY';
 
 console.log(`Sunrise/sunset in: ${cityName}`);
+const cityMapUrl = `${MAPQUEST_URL}&location=${cityName}`;
 
-request(`${MAPQUEST_URL}&location=${cityName}`, (error, response, body) => {
+request(cityMapUrl, (error, response, body) => {
   if (error) {
     console.error(error);
     return;
@@ -21,17 +22,15 @@ request(`${MAPQUEST_URL}&location=${cityName}`, (error, response, body) => {
 
   const json = JSON.parse(body);
   const city = json.results[0].locations[0].latLng;
+  const ssApiUrl = `${SS_API}&lat=${city.lat}&lng=${city.lng}`;
 
-  request(
-    `${SS_API}&lat=${city.lat}&lng=${city.lng}`,
-    (sError, sResponse, sBody) => {
-      if (sError) {
-        console.error(sError);
-        return;
-      }
-
-      const sunriseSunset = JSON.parse(sBody);
-      console.log(sunriseSunset);
+  request(ssApiUrl, (sError, sResponse, sBody) => {
+    if (sError) {
+      console.error(sError);
+      return;
     }
-  );
+
+    const sunriseSunset = JSON.parse(sBody);
+    console.log(sunriseSunset);
+  });
 });
