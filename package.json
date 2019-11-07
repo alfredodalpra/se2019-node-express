@@ -1,0 +1,24 @@
+{
+  "name": "se2019-node-express",
+  "version": "1.0.0",
+  "description": "node tutorial",
+  "main": "index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgeramirez/se2019-node-express.git"
+  },
+  "author": "Jorge Ramirez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jorgeramirez/se2019-node-express/issues"
+  },
+  "homepage": "https://github.com/jorgeramirez/se2019-node-express#readme"
+}
