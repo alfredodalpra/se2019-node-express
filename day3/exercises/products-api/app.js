@@ -30,7 +30,7 @@ let products = [
 
 // Getting an individual product
 app.get('/api/products/:id', function(req, res) {
-  let id = req.params.id;
+  const id = parseInt(req.params.id);
 
   if (id > products.length || id < 1) {
     res.status(404).send();
