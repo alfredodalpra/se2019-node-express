@@ -10,7 +10,7 @@ const API_KEY = process.env.API_KEY;
 const MAPQUEST_URL = `https://www.mapquestapi.com/geocoding/v1/address?key=${API_KEY}`;
 const SS_API = 'https://api.sunrise-sunset.org/json?';
 
-const printSunriseSunsetInfo = async cityName => {
+async function printSunriseSunsetInfo(cityName) {
   try {
     let res = await fetch(`${MAPQUEST_URL}&location=${cityName}`);
     let json = await res.json();

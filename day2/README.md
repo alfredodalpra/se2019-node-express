@@ -115,19 +115,24 @@ fs.readFile(fileName, 'utf8', (error, data) => {
 And the following snippet shows how the same example looks like when we use the Promise-based API:
 
 ```javascript
-// Loading the file system library
 const fs = require('fs').promises;
 
 // File name from the common line params
 const fileName = process.argv[2];
 
 // Accessing the content of the file asynchnously
-fs.readFile(fileName, 'utf8')
-  .then(data => {
-    console.log(data);
-    console.log('Program ended.');
-  })
-  .catch(error => console.error(error));
+let promise = fs.readFile(fileName, 'utf8');
+
+function onSuccess(data) {
+  console.log(data);
+  console.log('Program ended.');
+}
+
+function onError(error) {
+  console.error(error);
+}
+
+promise.then(onSuccess).catch(onError);
 ```
 
 At first, it might not look better, but we shifted to a coding structure that will look simpler even when we start to write more complex logic than just reading a file.

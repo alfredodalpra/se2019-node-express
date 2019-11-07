@@ -31,6 +31,9 @@ request(cityMapUrl, (error, response, body) => {
     }
 
     const sunriseSunset = JSON.parse(sBody);
-    console.log(sunriseSunset);
+
+    request(url, (err, rsp, zBody) => {
+      // .....
+    });
   });
 });

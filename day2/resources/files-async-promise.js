@@ -11,9 +11,15 @@ const fs = require('fs').promises;
 const fileName = process.argv[2];
 
 // Accessing the content of the file asynchnously
-fs.readFile(fileName, 'utf8')
-  .then(data => {
-    console.log(data);
-    console.log('Program ended.');
-  })
-  .catch(error => console.error(error));
+let promise = fs.readFile(fileName, 'utf8');
+
+function onSuccess(data) {
+  console.log(data);
+  console.log('Program ended.');
+}
+
+function onError(error) {
+  console.error(error);
+}
+
+promise.then(onSuccess).catch(onError);
