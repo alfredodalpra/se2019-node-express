@@ -1,15 +1,15 @@
 /*
-* app.js
-* Main entry point of the hello project
-* This script starts a simply hello world server
-*/
-var express = require('express');
-var app = express();
+ * app.js
+ * Main entry point of the hello project
+ * This script starts a simply hello world server
+ */
+const express = require('express');
+const app = express();
 
-var port = 3000;
+const port = 3000;
 
 // Handling GET requests
-app.get('/', function(req, res){ 
+app.get('/', function(req, res) {
   res.send('Hello World!');
 });
 

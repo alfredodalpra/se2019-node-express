@@ -19,10 +19,10 @@ Let's rewrite our node server based on the `http` module using express:
 ### Hello World!
 
 ```javascript
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-var port = 3000;
+const port = 3000;
 
 // Handling GET requests
 app.get('/', function(req, res) {
@@ -53,12 +53,12 @@ If we had to implement a way to serve static files, one way would be to:
 This requires quite some work, fortunately express provides some standard way of managing common features like this one. Look at the example `mid-static`.
 
 ```javascript
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-var port = 3000;
+const port = 3000;
 
-app.use(express.static('public'));
+app.use('/', express.static('public'));
 
 // Handling GET requests
 app.get('/hello', function(req, res) {
@@ -93,13 +93,13 @@ But what are middlewares, and how do they work?. Let's look at the following inf
 Serving requests to web forms can be done easily by extending our previous example in the following way (source code in `exercises/forms`):
 
 ```javascript
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
 // Loading utils to inspect the content of js objects
-var util = require('util');
+const util = require('util');
 
-var port = 3000;
+const port = 3000;
 
 app.use('/', express.static('public'));
 
@@ -136,7 +136,7 @@ Play with the above forms, submit some example requests and analyse what arrives
 1. What do you think is the reason behind using GET / POST ?
 2. Where is the data we are sending?
 
-On the first point, there is nice an extensive discussion here (https://www.w3schools.com/tags/ref_httpmethods.asp). Apart from some obvious practical reasons, we'll discuss some more fundamentals one when we get to REST APIs.
+On the first point, there is nice an extensive discussion in [[1]](https://www.w3schools.com/tags/ref_httpmethods.asp), [[2]](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview). Apart from some obvious practical reasons, we'll discuss some more fundamentals one when we get to REST APIs.
 
 On the second point, an alternative would be to process the put together the response body by concatenating chunks from the stream (remember when we did this in the first day?) but that is not necessary, because the body-parser middleware provides this funcionality already.
 
@@ -193,7 +193,7 @@ https://www.digitalocean.com/community/tutorials/how-to-troubleshoot-common-http
 
 ## RESTful APIs
 
-\*Representational State Transfer (REST) is an architectural style that defines a set of constraints to be used for creating web services. Web Services that conform to the REST architectural style, or RESTful web services, provide interoperability between computer systems on the Internet. **REST-compliant web services allow the requesting systems to access and manipulate textual representations of web resources by using a uniform and predefined set of stateless operations.\*** (Source [Wikipedia](https://en.wikipedia.org/wiki/Representational_state_transfer))
+>Representational State Transfer (REST) is an architectural style that defines a set of constraints to be used for creating web services. Web Services that conform to the REST architectural style, or RESTful web services, provide interoperability between computer systems on the Internet. **REST-compliant web services allow the requesting systems to access and manipulate textual representations of web resources by using a uniform and predefined set of stateless operations.**  (Source [Wikipedia](https://en.wikipedia.org/wiki/Representational_state_transfer))
 
 - web resource: any resource on the web that can be identied by an URI (universal resource identifier - urls are the most common type of identifiers).
 - text representation: json, xml, ...
