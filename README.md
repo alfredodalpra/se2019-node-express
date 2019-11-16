@@ -30,4 +30,8 @@ $ nvm install
 ## Materials
 You'll find the materials for the lectures in the day* folders.
 
+## Express starter kit
+
+Head over [this repository](https://github.com/jorgeramirez/express-starterkit) if you want to save some time while bootstrapping your API project using Express :)
+
 
