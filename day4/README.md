@@ -48,13 +48,13 @@ Source: [INFO_CS4302](https://courses2.cit.cornell.edu/info4302_2012fa/lectures/
 - Define "nice" **URIs** to address the resources.
 - Map HTTP verbs to resources.
 - Nouns are good, verbs are bad.
-  - ```diff +/actors```
-  - <span style="color: red;">/actorsPlaying80sMovies</span>
+  - <span style="color: green;">GOOD: /actors</span>
+  - <span style="color: red;">BAD: /actorsPlaying80sMovies</span>
 - Two base URLs per resource
-  - <span style="color: green;">/actors</span> (a list of actors)
-  - <span style="color: green;">/actors/23</span> (one actor with ID=23)
+  - <span style="color: green;">GOOD: /actors</span> (a list of actors)
+  - <span style="color: green;">GOOD: /actors/23</span> (one actor with ID=23)
 - Keep verbs out of your base URLs.
-  - <span style="color: red;">/getAllActors</span>
+  - <span style="color: red;">BAD: /getAllActors</span>
 - Relationships can be complex.
   - movie -> actor -> hobby
 - In most cases URL level shouldn't be deeper than: `resource/identifier/resource`
