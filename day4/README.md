@@ -48,7 +48,7 @@ Source: [INFO_CS4302](https://courses2.cit.cornell.edu/info4302_2012fa/lectures/
 - Define "nice" **URIs** to address the resources.
 - Map HTTP verbs to resources.
 - Nouns are good, verbs are bad.
-  - <span style="color: green;">/actors</span>
+  - ```diff +/actors```
   - <span style="color: red;">/actorsPlaying80sMovies</span>
 - Two base URLs per resource
   - <span style="color: green;">/actors</span> (a list of actors)
