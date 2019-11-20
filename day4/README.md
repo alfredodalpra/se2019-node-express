@@ -51,7 +51,7 @@ Source: [INFO_CS4302](https://courses2.cit.cornell.edu/info4302_2012fa/lectures/
   - /actors ✅
   - /actorsPlaying80sMovies ❌
 - Two base URLs per resource
-  - /actors(a list of actors)  ✅
+  - /actors (a list of actors)  ✅
   - /actors/23 (one actor with ID=23) ✅
 - Keep verbs out of your base URLs.
   - /getAllActors ❌
