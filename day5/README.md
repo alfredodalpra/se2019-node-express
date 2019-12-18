@@ -44,7 +44,7 @@ For Jest, it does not matter whether your test is a unit test or an integration 
 > Unit testing is a software testing method by which individual units of source code, sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures, are tested to determine whether they are fit for use.
 > source: [Wikipedia](https://en.wikipedia.org/wiki/Unit_testing).
 
-Let's assume we have the following we want to test the function `add` in the `users.js` module.
+Let's assume we want to test the function `add` in the `users.js` module defined as follows:
 
 ```javascript
 let users = [];
